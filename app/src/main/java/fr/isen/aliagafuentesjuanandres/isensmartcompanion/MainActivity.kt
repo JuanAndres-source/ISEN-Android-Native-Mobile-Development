@@ -147,7 +147,7 @@ fun HomeScreen(innerPadding: PaddingValues) {
 }
 
 @Composable
-fun AlertsScreen() {
+fun Screen() {
     // Content for alerts screen
     Box(
         modifier = Modifier.fillMaxSize(),
