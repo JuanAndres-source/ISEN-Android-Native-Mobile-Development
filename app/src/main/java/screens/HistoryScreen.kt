@@ -6,30 +6,27 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 
-// Sample event data
-data class Event(val title: String, val description: String, val date: String)
+// Sample history data
+data class HistoryItem(val title: String, val description: String, val date: String)
 
-val sampleEvents = listOf(
-    Event("Tech Conference 2025", "A conference about emerging technologies.", "March 15, 2025"),
-    Event("Android Dev Summit", "Annual Android development event.", "April 10, 2025"),
-    Event("AI & ML Workshop", "A hands-on workshop on AI and ML.", "May 20, 2025"),
-    Event("Startup Pitch Night", "Showcase your startup ideas.", "June 5, 2025")
+val sampleHistory = listOf(
+    HistoryItem("AI Workshop", "Attended an AI & ML hands-on session.", "Jan 10, 2025"),
+    HistoryItem("Tech Expo 2024", "Explored cutting-edge technology trends.", "Nov 15, 2024"),
+    HistoryItem("Startup Meetup", "Networked with entrepreneurs and investors.", "Oct 5, 2024")
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventsScreen(navController: NavController) {
+fun HistoryScreen(navController: PaddingValues) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Events") }
+                title = { Text("History") }
             )
         }
     ) { innerPadding ->
@@ -39,34 +36,34 @@ fun EventsScreen(navController: NavController) {
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            items(sampleEvents) { event ->
-                EventItem(event)
+            items(sampleHistory) { history ->
+                HistoryItemCard(history)
             }
         }
     }
 }
 
 @Composable
-fun EventItem(event: Event) {
+fun HistoryItemCard(history: HistoryItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { /* Handle click event */ },
+            .clickable { /* Handle click */ },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = event.title,
+                text = history.title,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = event.description)
+            Text(text = history.description)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Date: ${event.date}", fontWeight = FontWeight.Light)
+            Text(text = "Date: ${history.date}", fontWeight = FontWeight.Light)
         }
     }
 }

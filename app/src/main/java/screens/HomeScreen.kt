@@ -15,7 +15,7 @@ import fr.isen.aliagafuentesjuanandres.isensmartcompanion.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController) {
+fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
