@@ -1,4 +1,4 @@
-package fr.isen.aliagafuentesjuanandres.isensmartcompanion
+package ui.theme
 
 import android.os.Bundle
 import android.widget.Toast
@@ -25,12 +25,23 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Badge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.vector.ImageVector
 import fr.isen.aliagafuentesjuanandres.isensmartcompanion.ui.screens.HistoryScreen
 import fr.isen.aliagafuentesjuanandres.isensmartcompanion.ui.screens.MainScreen
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -49,8 +60,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreenWithNavBar() {
     val homeTab = TabBarItem("Home", Icons.Filled.Home, Icons.Outlined.Home)
-    val alertsTab = TabBarItem("Alerts", Icons.Filled.Notifications, Icons.Outlined.Notifications)
-    val settingsTab = TabBarItem("Settings", Icons.Filled.Settings, Icons.Outlined.Settings)
+    val alertsTab = TabBarItem("Events", Icons.Filled.Notifications, Icons.Outlined.Notifications)
+    val settingsTab = TabBarItem("History", Icons.Filled.Settings, Icons.Outlined.Settings)
 
     val tabBarItems = listOf(homeTab, alertsTab, settingsTab)
     val navController = rememberNavController()
@@ -58,10 +69,10 @@ fun MainScreenWithNavBar() {
     Scaffold(
         bottomBar = { TabView(tabBarItems, navController) }
     ) { paddingValues ->
-            NavHost(navController, startDestination = homeTab.title) {
-                composable(homeTab.title) { MainScreen(paddingValues) }
-                composable(alertsTab.title) { HomeScreen(paddingValues) }
-                composable(settingsTab.title) { HistoryScreen(paddingValues) }
+        NavHost(navController, startDestination = homeTab.title) {
+            composable(homeTab.title) { MainScreen(paddingValues) }
+            composable(alertsTab.title) { HomeScreen(paddingValues) }
+            composable(settingsTab.title) { HistoryScreen(paddingValues) }
         }
     }
 }
@@ -107,10 +118,10 @@ fun TabBarIconView(
     title: String,
     badgeAmount: Int? = null
 ) {
-        Icon(
-            imageVector = if (isSelected) selectedIcon else unselectedIcon,
-            contentDescription = title
-        )
+    Icon(
+        imageVector = if (isSelected) selectedIcon else unselectedIcon,
+        contentDescription = title
+    )
 }
 
 @Composable
@@ -119,6 +130,12 @@ fun TabBarBadgeView(count: Int? = null) {
         Badge { Text(count.toString()) }
     }
 }
+
+data class EventItem(
+    val title: String,
+    val date: String,
+    val description: String
+)
 
 @Composable
 fun HomeScreen(innerPadding: PaddingValues) {
@@ -137,34 +154,46 @@ fun HomeScreen(innerPadding: PaddingValues) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(innerPadding)
             .padding(16.dp)
-            .background(Color.Red),
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        // Content from your MainScreen goes here (HomeScreen content)
+        Text(
+            text = "📅 Upcoming Events",
+            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        Text(
+            text = "1️⃣ Tech Conference - March 20, 2025\n" +
+                    "2️⃣ AI Workshop - April 5, 2025\n" +
+                    "3️⃣ Hackathon - May 10, 2025",
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
 
 @Composable
-fun Screen() {
-    // Content for alerts screen
+fun Events() {
+    // Content for events screen
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text("Alerts", style = MaterialTheme.typography.headlineLarge)
+        Text("Events", style = MaterialTheme.typography.headlineLarge)
     }
 }
 
 @Composable
-fun SettingsScreen() {
+fun HistoryScreen() {
     // Content for settings screen
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text("Settings", style = MaterialTheme.typography.headlineLarge)
+        Text("History", style = MaterialTheme.typography.headlineLarge)
     }
 }
 

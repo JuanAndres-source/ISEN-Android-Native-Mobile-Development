@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// Sample history data
+
 data class HistoryItem(val title: String, val description: String, val date: String)
 
 val sampleHistory = listOf(
@@ -49,7 +49,7 @@ fun HistoryItemCard(history: HistoryItem) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { /* Handle click */ },
+            .clickable { /* To be able to click */ },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
