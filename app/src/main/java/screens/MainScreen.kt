@@ -31,9 +31,9 @@ fun MainScreen(navController: PaddingValues) {
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.isen_logo),
+                painter = painterResource(id = R.drawable.isen),
                 contentDescription = "ISEN Logo",
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(300.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
