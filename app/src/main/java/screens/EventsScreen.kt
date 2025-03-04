@@ -8,15 +8,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import api.NetworkManager
-import api.EventItem
+import models.EventModel
+import api.NetworkManager.NetworkManager
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventsScreen(innerPadding: PaddingValues) {
     val coroutineScope = rememberCoroutineScope()
-    var events by remember { mutableStateOf<List<EventItem>>(emptyList()) }
+    var events by remember { mutableStateOf<List<EventModel>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
@@ -59,7 +59,7 @@ fun EventsScreen(innerPadding: PaddingValues) {
 }
 
 @Composable
-fun EventCard(event: EventItem) {
+fun EventCard(event: EventModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
