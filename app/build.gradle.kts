@@ -51,22 +51,11 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.compose.v275)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
     implementation ("com.google.ai.client.generativeai:generativeai:0.4.0")
-
-    // Add the dependency for the Vertex AI in Firebase library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-vertexai")
-
-    // Retrofit for API calls
     implementation (libs.retrofit2.retrofit)
     implementation (libs.converter.gson)
-
-
-
-
-    // Testing Dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
