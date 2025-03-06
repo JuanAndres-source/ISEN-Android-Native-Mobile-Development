@@ -1,4 +1,0 @@
-/*
-This is my repository for the ISEN Smart Companion Project
-Native Mobile Development with Kotlin and Android Studio
-*/
